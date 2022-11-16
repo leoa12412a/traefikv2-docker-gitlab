@@ -22,8 +22,8 @@ docker network create proxy
 ```
 
 <br />
-編輯/home/traefikv2-docker-gitlab/traefik/docker-compose.yml，需要更改其中的traefik.9kyd.com
-<br />
+編輯/home/traefikv2-docker-gitlab/traefik/docker-compose.yml，需要更改其中的traefik.9kyd.com<br />
+
 ```
 version: '3.7'
 
@@ -56,8 +56,9 @@ networks:
   proxy:
     external: true
 ```
-<br />
+
 編輯/home/traefikv2-docker-gitlab/traefik/data/traefik.yml，需修改leo@9skin.com<br/>
+
 ```
 api:
   dashboard: true
@@ -98,8 +99,10 @@ certificatesResolvers:
       httpChallenge:
         entryPoint: web
 ```
+
 編輯/home/traefikv2-docker-gitlab/traefik/data/configurations/dynamic.yml，需修改root:$apr1$hn3zvejt$YwPW.pgWVV4p9DTrgZNY./<br/>
-此為traefik的登入密碼，可以使用<a href="https://zh-tw.rakko.tools/tools/20/">Htpasswd生成器</a>生成MD5(APR)的密碼
+此為traefik的登入密碼，可以使用<a href="https://zh-tw.rakko.tools/tools/20/">Htpasswd生成器</a>生成MD5(APR)的密碼<br />
+
 ```
 # Dynamic configuration
 http:
