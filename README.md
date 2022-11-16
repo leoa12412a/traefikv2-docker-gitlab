@@ -16,9 +16,11 @@ touch /home/traefikv2-docker-gitlab/docker-compose.yml
 ```
 <br />
 建立docker network<br />
+
 ```
 docker network create proxy
 ```
+
 <br />
 編輯/home/traefikv2-docker-gitlab/traefik/docker-compose.yml，需要更改其中的traefik.9kyd.com
 <br />
