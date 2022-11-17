@@ -185,4 +185,10 @@ networks:
     external: true
 ```
 
+gitlab的root帳號要進入container內設定<br/>
+
+```
+gitlab-rake "gitlab:password:reset[root]"
+```
+
 參考網站 : https://hexo.aufomm.com/traefik/
