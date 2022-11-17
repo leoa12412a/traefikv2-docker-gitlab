@@ -145,7 +145,7 @@ tls:
 version: '3'
 
 services:
-  whoami:
+  gitlab:
     container_name: gitlab
     image: gitlab/gitlab-ce:15.4.5-ce.0
     restart: always
@@ -171,7 +171,6 @@ services:
       - ./volumes/config:/etc/gitlab
       - ./volumes/logs:/var/log/gitlab
       - ./volumes/data:/var/opt/gitlab
-      - ./volumes/backups:/var/opt/gitlab/backups
     networks:
       - proxy
     labels:
