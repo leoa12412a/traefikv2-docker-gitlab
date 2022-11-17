@@ -1,4 +1,5 @@
 # 使用traefikv2架設配合Let's Encrypt帶有SSL的Gitlab
+
 這邊利用docker-compose進行架設，traefik版本為v2.4，gitlab版本為gitlab-ce:15.4.5-ce.0
 - traefik.9kyd.com作為traefik的網址
 - gitlab2.9kyd.com作為traefik的網址
@@ -184,3 +185,5 @@ networks:
   proxy:
     external: true
 ```
+
+參考網站 : https://hexo.aufomm.com/traefik/
