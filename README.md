@@ -199,57 +199,57 @@ docker exec -it <container name> gitlab-rake "gitlab:password:reset[root]"
 
 # Gitlab備份
 
-前面的docker-compose內有設定backup_path=/mnt/backups，所以我們進行備份時檔案將會產生在/mnt/backups。
+前面的docker-compose內有設定backup_path=/mnt/backups，所以我們進行備份時檔案將會產生在/mnt/backups。<br/>
 
-備份可以使用crontab定時進行備份，另外備份分為兩個部分一個是專案檔案，另一個為設定檔、公鑰...等配置檔。
+備份可以使用crontab定時進行備份，另外備份分為兩個部分一個是專案檔案，另一個為設定檔、公鑰...等配置檔。<br/>
 
-使用以下指令產生備份檔案
+使用以下指令產生備份檔案<br/>
 
 ```
 docker exec -t <container name> gitlab-backup create
 ```
 
-設定檔的部分在compose的volumes:- ./volumes/config:/etc/gitlab就已經備份好了
+設定檔的部分在compose的volumes:- ./volumes/config:/etc/gitlab就已經備份好了<br/>
 
-備份完成後就會在./volumes/backups看到備份檔了
+備份完成後就會在./volumes/backups看到備份檔了<br/>
 
-參考網址 : https://docs.gitlab.com/15.4/ee/raketasks/backup_gitlab.html
+參考網址 : https://docs.gitlab.com/15.4/ee/raketasks/backup_gitlab.html<br/>
 
 # Gitlab還原
 
-首先還原config檔，直接將volumes出來的config檔案直接覆蓋到目前的./volumes/config上
+首先還原config檔，直接將volumes出來的config檔案直接覆蓋到目前的./volumes/config上<br/>
 
 ```
 cp -R /home/backups/conf volumes/config
 ```
 
-再來還原專案，先關閉puma和sidekiq
+再來還原專案，先關閉puma和sidekiq<br/>
 
 ```
 docker exec -it <name of container> gitlab-ctl stop puma
 docker exec -it <name of container> gitlab-ctl stop sidekiq
 ```
 
-利用指令確認是否成功關閉
+利用指令確認是否成功關閉<br/>
 
 ```
 docker exec -it <name of container> gitlab-ctl status
 ```
 
-進行儲存庫的還原，像我備份的tar檔名稱就為1668744317_2022_11_18_15.4.5_gitlab_backup.tar
-BACKUP=後面就加上1668744317_2022_11_18_15.4.5
+進行儲存庫的還原，像我備份的tar檔名稱就為1668744317_2022_11_18_15.4.5_gitlab_backup.tar<br/>
+BACKUP=後面就加上1668744317_2022_11_18_15.4.5<br/>
 
 ```
 docker exec -it <name of container> gitlab-backup restore BACKUP=1668744317_2022_11_18_15.4.5
 ```
 
-還原成功後還原container
+還原成功後還原container<br/>
 
 ```
 docker restart <name of container>
 ```
 
-利用指令檢查gitlab
+利用指令檢查gitlab<br/>
 
 ```
 docker exec -it <name of container> gitlab-rake gitlab:check SANITIZE=true
