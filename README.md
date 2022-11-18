@@ -156,21 +156,25 @@ services:
         external_url 'https://gitlab2.9kyd.com'
         nginx['listen_https'] = false
         nginx['listen_port'] = 80
+        gitlab_rails['time_zone'] = 'Asia/Taipei'
         gitlab_rails['smtp_enable'] = true
         gitlab_rails['smtp_address'] = 'smtp.gmail.com'
-        gitlab_rails['smtp_port'] = 465
+        gitlab_rails['smtp_port'] = 587
         gitlab_rails['smtp_user_name'] = '9skinmailer@gmail.com'
         gitlab_rails['smtp_password'] = '12345678'
-        gitlab_rails['smtp_domain'] = 'gmail.com'
+        gitlab_rails['smtp_domain'] = 'smtp.gmail.com'
         gitlab_rails['smtp_authentication'] = 'login'
         gitlab_rails['smtp_enable_starttls_auto'] = true
         gitlab_rails['smtp_tls'] = false
         gitlab_rails['smtp_openssl_verify_mode'] = 'peer'
         gitlab_rails['gitlab_shell_ssh_port'] = 2222
+        gitlab_rails['backup_keep_time'] = 86400
+        gitlab_rails['backup_path'] = '/mnt/backups'
     volumes:
       - ./volumes/config:/etc/gitlab
       - ./volumes/logs:/var/log/gitlab
       - ./volumes/data:/var/opt/gitlab
+      - ./volumes/backups:/mnt/backups
     networks:
       - proxy
     labels:
