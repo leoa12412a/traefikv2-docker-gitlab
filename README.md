@@ -254,3 +254,5 @@ docker restart <name of container>
 ```
 docker exec -it <name of container> gitlab-rake gitlab:check SANITIZE=true
 ```
+
+參考網址 : https://docs.gitlab.com/15.4/ee/raketasks/restore_gitlab.html
